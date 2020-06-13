@@ -1,0 +1,14 @@
+
+We basically tried 3 models:
+
+model1 - The accuracy obtained after training on this model were :
+         validation accuracy - 80.6%
+         Test accuracy - 81.3%
+         
+model2 - The accuracy obtained after training on this model were:
+         validation accuracy - 85.5%
+         Test accuracy - 85.3%
+         
+model3 - The accuracy obtained after training on this model were:
+         validation accuracy - 87.5%
+         Test accuracy - 88%
