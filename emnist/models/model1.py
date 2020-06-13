@@ -21,3 +21,21 @@ model.add(keras.layers.Dense(units=num_classes, activation='softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer='Adam', metrics=['accuracy'])
 model.summary()
+
+
+
+data_generator = keras.preprocessing.image.ImageDataGenerator(validation_split=.2)
+## consider using this for more variety
+data_generator_with_aug = keras.preprocessing.image.ImageDataGenerator(validation_split=.2,
+                                            width_shift_range=.2, height_shift_range=.2,
+                                            rotation_range=60, zoom_range=.2, shear_range=.3)
+
+# if already ran this above, no need to do it again
+# X, y = img_label_load(train_data_path)
+# print("X.shape: ", X.shape)
+
+training_data_generator = data_generator.flow(X, y, subset='training')
+validation_data_generator = data_generator.flow(X, y, subset='validation')
+history = model.fit_generator(training_data_generator, 
+                              steps_per_epoch=500, epochs=10, # can change epochs to 10
+                              validation_data=validation_data_generator)
