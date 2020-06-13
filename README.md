@@ -1,7 +1,7 @@
 ## HANDWRITTEN TEXT RECOGNITION
 
 In this project we are basically focusing on Handwritten character recignition in official documents containing characters in textboxes.
-we will be using the form/document images present in the input section of this repo.
+we will be using the form/document images present in the images section of this repo.
 
 #### STEPS FOLLOWED ARE:
 
