@@ -16,12 +16,12 @@ from keras.models import model_from_json
 
 def get_model_config(model_name):
     model_config = {}
-    if model_name == 'baseline':
-        model_config['model_builder'] = baseline_model
-    elif model_name == 'simple_CNN':
-        model_config['model_builder'] = simple_CNN_model
-    elif model_name == 'larger_CNN':
-        model_config['model_builder'] = larger_CNN_model
+    if model_name == 'model1':
+        model_config['model_builder'] = model1
+    elif model_name == 'model2':
+        model_config['model_builder'] = model2
+    elif model_name == 'model3':
+        model_config['model_builder'] = model3
     else:
         raise Exception('Unknown model name.')
     model_config['filepath_weight'] = os.path.join('../data/models', '{}_weight'.format(model_name))
@@ -35,31 +35,8 @@ def baseline_model(num_classes, image_shape):
     model.add(Dense(num_classes, init='normal', activation='softmax'))
     return model
 
-def simple_CNN_model(num_classes, image_shape):
-    model = Sequential()
-    model.add(Reshape((1, image_shape[0], image_shape[1]), input_shape = image_shape))
-    model.add(Convolution2D(32, 5, 5, border_mode='valid', activation='relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Dropout(0.2))
-    model.add(Flatten())
-    model.add(Dense(128, activation='relu'))
-    model.add(Dense(num_classes, activation='softmax'))
-    return model
-
-def larger_CNN_model(num_classes, image_shape):
-    model = Sequential()
-    model.add(Reshape((1, image_shape[0], image_shape[1]), input_shape = image_shape))
-    model.add(Convolution2D(50, 3, 3, border_mode='same', activation='relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Convolution2D(40, 3, 3, border_mode='same', activation='relu'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Dropout(0.2))
-    model.add(Flatten())
-    model.add(Dense(400, activation='relu'))
-    model.add(Dropout(0.2))
-    model.add(Dense(250, activation='relu'))
-    model.add(Dense(num_classes, activation='softmax'))
-    return model
+# def model1:
+# def model2:
 
 def save_model(model, model_config):
     #Saves model weights
@@ -81,7 +58,7 @@ def load_model(filepath_weights, filepath_architechture):
     return model
 
 def get_model_name():
-    model_name = input('Select model:(baseline/simple_CNN/[larger_CNN])\n')
+    model_name = input('Select model:(baseline/simple_CNN/[model2])\n')
     if model_name == '':
-        model_name = 'larger_CNN'
+        model_name = 'model2'
     return model_name
